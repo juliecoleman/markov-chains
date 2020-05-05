@@ -45,8 +45,20 @@ def make_chains(text_string):
 
     chains = {}
 
-    for i in range(len(words)-1):
-        print text[i], text [i + 1]
+
+
+    for i in range(len(text_string)-2):
+        key_chains = (text_string[i], text_string[i + 1])
+
+        value_chains = text_string[i + 2]
+
+        chains.setdefault(key_chains, []).append(value_chains)
+
+        #other option:
+        #if key_chains not in chains:
+        #    chains[key_chains] = []
+        #chains[key_chains].append(value_chains)
+        
 
     return chains
 
@@ -55,7 +67,6 @@ def make_text(chains):
     """Return text from chains."""
 
     words = []
-
     # your code goes here
 
     return " ".join(words)
