@@ -53,22 +53,31 @@ def make_chains(text_string):
         value_chains = text_string[i + 2]
 
         chains.setdefault(key_chains, []).append(value_chains)
-
+        
         #other option:
         #if key_chains not in chains:
         #    chains[key_chains] = []
         #chains[key_chains].append(value_chains)
-        
 
     return chains
 
 
 def make_text(chains):
     """Return text from chains."""
+    import random
 
     words = []
-    # your code goes here
 
+    link = random.choice(list(chains.keys()))
+    print(link)
+    words.append(link[0])
+    words.append(link[1])
+
+    for key, item in chains.items():
+
+        words.append(key[1])
+        link = (key[1], random.choice(item))
+        
     return " ".join(words)
 
 
@@ -79,8 +88,8 @@ input_text = open_and_read_file(input_path)
 
 # Get a Markov chain
 chains = make_chains(input_text)
-print(chains)
 
+print(chains)
 # Produce random text
 random_text = make_text(chains)
 
